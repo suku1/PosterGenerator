@@ -1,0 +1,2 @@
+# PosterGenerator
+画像を減色してSchematicファイルに変換する
