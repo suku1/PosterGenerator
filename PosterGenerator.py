@@ -78,8 +78,14 @@ class poster:
         self.color_type = config['COLOR_TYPE']
         self.rgb_diff = config['RGB_DIFF']
         self.palette_name = config['PALETTE_NAME']
-        self.outimage = config['OUTPUT_IMAGE']
-        self.outschematic = config['OUTPUT_SCHEMATIC']
+        if config['OUTPUT_IMAGE']:
+            self.outimage = config['OUTPUT_IMAGE']
+        else:
+            self.outimage = 'output'
+        if config['OUTPUT_SCHEMATIC']:
+            self.outschematic = config['OUTPUT_SCHEMATIC']
+        else:
+            self.outschematic = 'output'
         self.dither = config['DITHER']
         self.dither_weight = min(max(config['DITHER_WEIGHT'], 0), 1)
         self.random_dither = config['RANDOM_DITHER']
@@ -329,6 +335,8 @@ class poster:
 
     def output(self):
         self.packing()
+        if self.outimage == 'output' or self.outschematic == 'output':
+            os.makedirs('output')
         try:
             self.save_img()
         except:
@@ -344,16 +352,10 @@ def main():
 
     if len(sys.argv) == 1:
         print('')
-        print('使い方')
+        print('変換元の画像ファイルを指定してください')
         print('')
-        print('poster.pyの場合')
-        print('python poster.py example.png')
-        print('')
-        print('poster.exeの場合')
-        print('poster.exe example.png')
     else:
         name = sys.argv[1]
-        #name = 'aichan.png'
         p = poster(name)
         p.dithering()
         p.output()
