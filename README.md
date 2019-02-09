@@ -16,18 +16,9 @@ $ pip install nbtlib
 $ pip install opencv-python
 ```
 
-## Usage
-PosterGenerator.pyまたはPosterGenerator.exeを使用できます.   
-機能に差はありません.  
-
-使用方法  
- - PosterGenerator.py
+## Usage  
 ```bash
 $ python PosterGenerator.py example.png
-```
- - PosterGenerator.exe
- ```bash
-$ PosterGenerator example.png
 ```
 
 ## Licence
