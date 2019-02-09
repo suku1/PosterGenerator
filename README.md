@@ -17,7 +17,7 @@ $ pip install opencv-python
 ```
 
 ## Usage
-PosterGenerator.pyとPosterGenerator.exeがあります.   
+PosterGenerator.pyまたはPosterGenerator.exeを使用できます.   
 機能に差はありません.  
 
 使用方法  
