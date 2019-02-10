@@ -336,7 +336,7 @@ class poster:
     def output(self):
         self.packing()
         if self.outimage == 'output' or self.outschematic == 'output':
-            os.makedirs('output')
+            os.makedirs('output', exist_ok=True)
         try:
             self.save_img()
         except:
