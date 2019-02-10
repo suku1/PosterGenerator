@@ -31,12 +31,21 @@ class poster:
 
         self.blocks = []
         self.data = []
+        self.add_bgr_palette()
         if self.color_type == 'HSV':
             self.img_hsv = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
             self.add_hsv_palette()
         elif self.color_type == 'LAB':
             self.img_lab = cv2.cvtColor(self.img, cv2.COLOR_BGR2LAB)
             self.add_lab_palette()
+
+    def add_bgr_palette(self):
+        palette = np.zeros((1, len(self.colordata), 3), np.uint8)
+        for i in range(len(self.colordata)):
+            palette[0][i] = self.colordata[i]['COLOR']
+        hsv = cv2.cvtColor(palette, cv2.COLOR_RGB2BGR)
+        for i in range(len(self.colordata)):
+            self.colordata[i]['BGR'] = [int(hsv[0][i][0]), int(hsv[0][i][1]), int(hsv[0][i][2])]
 
     def add_hsv_palette(self):
         palette = np.zeros((1, len(self.colordata), 3), np.uint8)
@@ -230,7 +239,7 @@ class poster:
         for d in self.colordata:
             if d['USE'] == False:
                 continue
-            p_color = d['COLOR']
+            p_color = d['BGR']
             diff = old_color - p_color
             diff_dist = sum(diff ** 2)
             if best > diff_dist:
@@ -336,7 +345,7 @@ class poster:
     def output(self):
         self.packing()
         if self.outimage == 'output' or self.outschematic == 'output':
-            os.makedirs('output')
+            os.makedirs('output', exist_ok=True)
         try:
             self.save_img()
         except:
