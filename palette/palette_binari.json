@@ -9,17 +9,7 @@
         "BLOCK_NAME": "Snow Block",
         "BLOCK_ID": 80,
         "DATA": 0,
-        "USE": true,
-        "HSV": [
-            0,
-            0,
-            255
-        ],
-        "LAB": [
-            255,
-            128,
-            128
-        ]
+        "USE": true
     },
     {
         "COLOR_NAME": "BLACK",
@@ -31,16 +21,6 @@
         "BLOCK_NAME": "Black wool",
         "BLOCK_ID": 35,
         "DATA": 15,
-        "USE": true,
-        "HSV": [
-            0,
-            0,
-            25
-        ],
-        "LAB": [
-            23,
-            128,
-            128
-        ]
+        "USE": true
     }
 ]

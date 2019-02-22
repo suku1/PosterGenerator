@@ -2,7 +2,6 @@
     "comment": [
         "PALETTE_NAME: パレットのファイル名",
         "OUTPUT_IMAGE: 画像の出力フォルダ",
-        "OUTPUT_LIST: 材料リストの出力フォルダ",
         "OUTPUT_SCHEMATIC: Schematicファイルの出力フォルダ",
         "COLOR_TYPE: 色空間の指定(RGBまたはLAB)",
         "RGB_DIFF: 色差をRGBで取る",
@@ -12,9 +11,8 @@
         "SEED: 乱数のシード値, Falseなら指定しない"
     ],
     "PALETTE_NAME": "palette",
-    "OUTPUT_IMAGE": "output",
-    "OUTPUT_LIST": "output",
-    "OUTPUT_SCHEMATIC": "output",
+    "OUTPUT_IMAGE": "",
+    "OUTPUT_SCHEMATIC": "",
     "COLOR_TYPE": "RGB",
     "RGB_DIFF": false,
     "DITHER": true,
