@@ -65,7 +65,6 @@ config.jsonのPALETTE_NAMEを変更すれば使用するパレットを切り替
  色のRGBデータ  
  - BLOCK_NAME  
  色に対応するブロックの名前  
- 現状使用していない  
  - BLOCK_ID  
  ブロックID  
  - DATA  
