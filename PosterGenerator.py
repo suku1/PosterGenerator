@@ -26,11 +26,16 @@ class poster:
             sys.stderr.write('パレットデータの取得に失敗\n')
             sys.exit(1)
 
-        self.imgname = 'converted.png' 
-        self.schname = 'converted.schematic'
+        fname = name.rsplit('.', 1)[0]
+        self.imgname = fname + '_converted.png' 
+        self.schname = fname + '.schematic'
+        self.listname = fname + '_blocklist.txt'
 
         self.blocks = []
         self.data = []
+        self.list_name = []
+        self.list_count = []
+
         self.add_bgr_palette()
         if self.color_type == 'HSV':
             self.img_hsv = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
@@ -137,10 +142,18 @@ class poster:
         print('  ' + address)
         print('  使用色数: ' + str(use) + '/' + str(len(self.colordata)))
         print('')
-    
+
     def add_data(self, data):
         self.blocks.append(data['BLOCK_ID'])
         self.data.append(data['DATA'])
+
+        name = data['BLOCK_NAME']
+        if name in self.list_name:
+            index = self.list_name.index(name)
+            self.list_count[index] += 1
+        else:
+            self.list_name.append(name)
+            self.list_count.append(1)
 
     def dithering(self):
         sys.stdout.write('減色中[0%]')
@@ -342,6 +355,20 @@ class poster:
         print('Schematicファイルを保存')
         print('  ' + address)
 
+    def save_list(self):
+        address = os.path.join(self.outschematic, self.listname)
+        l = []
+        for n, c in zip(self.list_name, self.list_count):
+            l.append([n, c])
+        l.sort(key=lambda x: x[1], reverse=True)
+        with open(address, mode='w') as f:
+            for t in l:
+                text = t[0] + '    ' +str(t[1])
+                if t[1] > 64: text += '(' + str(t[1] // 64) + 's + ' + str(t[1] % 64) + ')'
+                f.write(text + '\n')
+        print('使用ブロックリストを保存')
+        print('  ' + address)
+
     def output(self):
         self.packing()
         if self.outimage == 'output' or self.outschematic == 'output':
@@ -354,7 +381,13 @@ class poster:
         try:
             self.save_schematic()
         except:
-            sys.stderr.write('Schematicファイルの保存に失敗\n')  
+            sys.stderr.write('Schematicファイルの保存に失敗\n')
+        print('')
+        try:
+            self.save_list()
+        except:
+            sys.stderr.write('ブロックリストの保存に失敗\n')
+        print('')
 
 def main():
     print('PosterGenerator')

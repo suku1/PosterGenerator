@@ -10,7 +10,7 @@
         "RANDOM_DITHER: ディザリング時の誤差拡散に乱数を用いる",
         "SEED: 乱数のシード値, Falseなら指定しない"
     ],
-    "PALETTE_NAME": "palette",
+    "PALETTE_NAME": "jp",
     "OUTPUT_IMAGE": "",
     "OUTPUT_SCHEMATIC": "",
     "COLOR_TYPE": "RGB",
